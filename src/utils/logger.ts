@@ -1,13 +1,12 @@
 import fs from 'fs'
 
-import winston, { LogCallback, info } from 'winston'
+import winston from 'winston'
 import winstonDaily from 'winston-daily-rotate-file'
 
 import moment from 'moment'
 import 'moment-timezone'
 
 import config from '../configs'
-import { format } from 'url'
 
 const logDir = config.logs.dir
 
@@ -69,11 +68,11 @@ const logger = winston.createLogger({
 })
 
 export default {
-  error: logger.error,
-  warn: logger.warn,
-  info: logger.info,
-  http: logger.http,
+  error: logger.error.bind(logger),
+  warn: logger.warn.bind(logger),
+  info: logger.info.bind(logger),
+  http: logger.http.bind(logger),
   query: (message: string) => logger.log('query', message),
   route: (message: string) => logger.log('route', message),
-  debug: logger.debug,
+  debug: logger.debug.bind(logger),
 }
