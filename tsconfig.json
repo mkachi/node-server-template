@@ -24,7 +24,7 @@
     "noEmit": true,
     "jsx": "react",
     "outDir": "build",
-    "charset": "utf7"
+    "charset": "utf7",
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules/**/*"]
