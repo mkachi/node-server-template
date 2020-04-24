@@ -21,8 +21,8 @@ export default async () => {
         Container.set(dao.tableName, dao)
       }
     }
-    Logger.info('✔️ DAO load success')
+    Logger.info('✔️  DAO load success')
   } catch (except) {
-    Logger.error('❌ DAO load failed - ', except)
+    Logger.error('❌  DAO load failed - ', except)
   }
 }

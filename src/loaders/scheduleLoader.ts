@@ -18,8 +18,8 @@ export default async () => {
         require(modulePath)
       }
     }
-    Logger.info('✔️ Schedules load success')
+    Logger.info('✔️  Schedules load success')
   } catch (except) {
-    Logger.error('❌ Schedules load failed - ', except)
+    Logger.error('❌  Schedules load failed - ', except)
   }
 }
