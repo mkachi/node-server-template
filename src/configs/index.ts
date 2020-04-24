@@ -14,6 +14,9 @@ const config: IConfig = {
     job: [ path.resolve(__dirname, '../models/Jobs') ],
     dao: [ path.resolve(__dirname, '../models/DAO/') ],
   },
+  server: {
+    port: 3000,
+  },
   database: {
     type: 'postgres',
     host: process.env.host,

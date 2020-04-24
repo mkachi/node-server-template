@@ -6,6 +6,9 @@ export interface IConfig {
     dir: string
     keep: string
   }
+  server: {
+    port: number
+  }
   models: {
     dao?: string[]
     job?: string[]
