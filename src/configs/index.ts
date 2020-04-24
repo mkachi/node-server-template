@@ -11,7 +11,7 @@ const config: IConfig = {
     keep: '14d',
   },
   models: {
-    job: [ path.resolve(__dirname, '../models/Jobs') ],
+    schedule: [ path.resolve(__dirname, '../models/schedule') ],
     dao: [ path.resolve(__dirname, '../models/DAO/') ],
   },
   server: {

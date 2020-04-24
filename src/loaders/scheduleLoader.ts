@@ -7,7 +7,7 @@ const readdir = util.promisify(fs.readdir)
 
 export default async () => {
   try {
-    const paths: string[] = config.models.job
+    const paths: string[] = config.models.schedule
     if (paths === null || paths === undefined) {
       return
     }

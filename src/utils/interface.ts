@@ -11,7 +11,7 @@ export interface IConfig {
   }
   models: {
     dao?: string[]
-    job?: string[]
+    schedule?: string[]
   }
   database: {
     host: string
