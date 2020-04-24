@@ -7,7 +7,8 @@ export interface IConfig {
     keep: string
   }
   models: {
-    dao: string[]
+    dao?: string[]
+    job?: string[]
   }
   database: {
     host: string

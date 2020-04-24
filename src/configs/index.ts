@@ -8,10 +8,11 @@ const config: IConfig = {
   timezone: 'Asia/Seoul',
   logs: {
     dir: 'logs',
-    keep: '14d'
+    keep: '14d',
   },
   models: {
-    dao: [path.resolve(__dirname, '../models/DAO/')]
+    job: [ path.resolve(__dirname, '../models/Jobs') ],
+    dao: [ path.resolve(__dirname, '../models/DAO/') ],
   },
   database: {
     type: 'postgres',
@@ -22,9 +23,9 @@ const config: IConfig = {
     database: process.env.database,
     timestamp: {
       createAt: 'createat',
-      updateAt: 'updateat'
-    }
-  }
+      updateAt: 'updateat',
+    },
+  },
 }
 
 export default config
