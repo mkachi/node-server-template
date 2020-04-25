@@ -11,11 +11,12 @@ const config: IConfig = {
     keep: '14d',
   },
   models: {
-    schedule: [ path.resolve(__dirname, '../models/schedule') ],
+    schedule: [ path.resolve(__dirname, '../models/schedules') ],
     dao: [ path.resolve(__dirname, '../models/DAO/') ],
   },
   server: {
     port: 3000,
+    router: [ path.resolve(__dirname, '../routes') ],
   },
   database: {
     type: 'postgres',

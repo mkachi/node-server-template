@@ -8,6 +8,7 @@ export interface IConfig {
   }
   server: {
     port: number
+    router: string[]
   }
   models: {
     dao?: string[]

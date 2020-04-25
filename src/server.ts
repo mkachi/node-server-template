@@ -1,9 +1,21 @@
-import { Container } from 'typedi'
-import { DAO } from './utils/orm'
-import daoLoader from './loaders/daoLoader'
-import logger from './utils/logger'
-import scheduleLoader from './loaders/scheduleLoader'
+import loader from './loaders'
+import config from './configs'
+import Logger from './utils/logger'
 
-scheduleLoader().then(() => {
-  logger.debug('Wait...')
-})
+loader()
+  .then((server) => {
+    if (server === null || server === undefined) {
+      return
+    }
+    server.listen(config.server.port, (error) => {
+      if (error) {
+        Logger.error(error)
+        process.exit(1)
+        return
+      }
+      Logger.info(`Server start on ${config.server.port}`)
+    })
+  })
+  .catch((except) => {
+    Logger.error('Server start failed - ', except)
+  })
