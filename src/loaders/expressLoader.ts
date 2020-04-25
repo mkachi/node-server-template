@@ -1,11 +1,13 @@
-import express from 'express'
+import express, { Router } from 'express'
 import cors from 'cors'
 import Logger from '../utils/logger'
 
-export default async () => {
+export default async (router: Router) => {
   try {
     const server = express()
     server.use(cors())
+
+    server.use(router)
 
     server.get('/status', (req, res) => {
       res.status(200).end()
