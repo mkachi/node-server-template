@@ -1,7 +1,7 @@
 import expressLoader from './expressLoader'
 import scheduleLoader from './scheduleLoader'
 import daoLoader from './daoLoader'
-import routeLoader from './routeLoader'
+import controller from './controllerLoader'
 
 import Logger from '../utils/logger'
 
@@ -9,9 +9,8 @@ export default async () => {
   try {
     await daoLoader()
     await scheduleLoader()
-    await routeLoader()
-
-    const server = await expressLoader()
+    const router = await controller()
+    const server = await expressLoader(router)
     Logger.info('✔️  Load complete')
     return server
   } catch (except) {

@@ -16,7 +16,7 @@ const config: IConfig = {
   },
   server: {
     port: 3000,
-    router: [ path.resolve(__dirname, '../routes') ],
+    controller: [ path.resolve(__dirname, '../controllers') ],
   },
   database: {
     type: 'postgres',
