@@ -1,20 +1,21 @@
 import { Dialect } from 'sequelize/types'
 
 export interface IConfig {
-  timezone: string
+  timezone?: string
   logs: {
-    dir: string
-    keep: string
+    path: string
+    keep?: string
   }
   server: {
     port: number
-    controller: string[]
   }
-  models: {
-    dao?: string[]
+  models?: {
     schedule?: string[]
+    dao?: string[]
+    controller?: string[]
+    service?: string[]
   }
-  database: {
+  database?: {
     host: string
     port: number
     type: Dialect

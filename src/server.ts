@@ -1,23 +1,36 @@
-import loader from './loaders'
 import config from './configs'
-import Logger from './utils/logger'
-import { Router } from 'express'
+import logger from './utils/logger'
+import express from 'express'
+import loader from './loaders'
 
-loader()
-  .then((server) => {
-    if (server === null || server === undefined) {
-      return
-    }
+const server = express()
 
-    server.listen(config.server.port, (error) => {
-      if (error) {
-        Logger.error(error)
+loader(server)
+  .then(() => {
+    server.use((req, res, next) => {
+      const error = new Error('Not Found')
+      error['status'] = 404
+      next(error)
+    })
+
+    server.use((err, req, res, next) => {
+      const code = err.status || 500
+      res.status(code)
+      logger.error(err.message)
+      res.json({
+        type: 'error',
+        header: `${code}`,
+        value: err.message,
+      })
+    })
+
+    server.listen(config.server.port, (err) => {
+      if (err) {
+        logger.error(err)
         process.exit(1)
         return
       }
-      Logger.info(`Server start on ${config.server.port}`)
+      logger.info(`✔️  Server start on ${config.server.port}`)
     })
   })
-  .catch((except) => {
-    Logger.error('Server start failed - ', except)
-  })
+  .catch((except) => logger.error('❌  Server start failed - ', except))

@@ -1,20 +1,21 @@
-import expressLoader from './expressLoader'
-import scheduleLoader from './scheduleLoader'
-import daoLoader from './daoLoader'
-import controller from './controllerLoader'
+import dependencyLoader from './dependency'
+import moduleLoader from './module'
+import express, { Router } from 'express'
+import cors from 'cors'
+import logger from '../utils/logger'
 
-import Logger from '../utils/logger'
-
-export default async () => {
+export default async (server: express.Express) => {
   try {
-    await daoLoader()
-    await scheduleLoader()
-    const router = await controller()
-    const server = await expressLoader(router)
-    Logger.info('✔️  Load complete')
-    return server
+    await dependencyLoader()
+
+    const router = Router()
+    await moduleLoader(router)
+
+    server.use(router)
+    server.use(cors())
+
+    logger.info('✔️  Load success')
   } catch (except) {
-    Logger.error('❌  Load failed - ', except)
+    logger.error('❌  Load failed - ', except)
   }
-  return null
 }

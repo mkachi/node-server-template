@@ -8,11 +8,11 @@ import 'moment-timezone'
 
 import config from '../configs'
 
-const logDir = config.logs.dir
+const logPath = config.logs.path
 
 moment.tz.setDefault(config.timezone)
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir)
+if (!fs.existsSync(logPath)) {
+  fs.mkdirSync(logPath)
 }
 
 const levelOptions = {
@@ -41,9 +41,9 @@ const getTimestamp = () => moment().format('YYYY-MM-DD HH:mm:ss.SSS')
 const transports = [
   new winstonDaily({
     level: 'debug',
-    filename: `${logDir}/%DATE%.log`,
+    filename: `${logPath}/%DATE%.log`,
     handleExceptions: true,
-    dirname: logDir,
+    dirname: logPath,
     datePattern: 'YYYY-MM-DD',
     maxFiles: config.logs.keep,
     format: winston.format.printf((info) => `${getTimestamp()} [${info.level.toUpperCase()}] ${info.message}`),
