@@ -2,11 +2,15 @@ import 'reflect-metadata'
 import { IRouteInfo } from './models/routeInfo'
 
 export enum RestType {
+  CONNECT = 'connect',
+  DELETE = 'delete',
   GET = 'get',
+  HEAD = 'head',
+  OPTIONS = 'options',
+  PATCH = 'patch',
   POST = 'post',
   PUT = 'put',
-  PATCH = 'patch',
-  DELETE = 'delete'
+  TRACE = 'trace'
 }
 
 export const Controller = (routePath: string = '', routeType: RestType = RestType.GET): ClassDecorator => {
