@@ -1,19 +1,19 @@
 import path from 'path'
-import { IConfig } from '../utils/interface'
+import { IConfig } from '../common/models/config'
 
 const config: IConfig = {
   timezone: 'Asia/Seoul',
   logs: {
     path: 'logs',
-    keep: '14d',
+    keep: '14d'
   },
   server: {
-    port: 3000,
+    port: 3000
   },
   models: {
-    schedule: [ path.resolve(__dirname, '../models/schedules') ],
-    dao: [ path.resolve(__dirname, '../models/DAO') ],
-    controller: [ path.resolve(__dirname, '../controllers') ],
+    schedule: [path.resolve(__dirname, '../models/schedules')],
+    dao: [path.resolve(__dirname, '../models/DAO')],
+    controller: [path.resolve(__dirname, '../controllers')]
   },
   database: {
     type: 'postgres',
@@ -24,9 +24,9 @@ const config: IConfig = {
     database: process.env.database,
     timestamp: {
       createAt: 'createat',
-      updateAt: 'updateat',
-    },
-  },
+      updateAt: 'updateat'
+    }
+  }
 }
 
 export default config

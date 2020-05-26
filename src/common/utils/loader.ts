@@ -1,4 +1,4 @@
-import logger from '../utils/logger'
+import logger from './logger'
 import fs from 'fs'
 import util from 'util'
 

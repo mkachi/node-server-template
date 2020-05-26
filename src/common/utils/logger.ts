@@ -6,7 +6,7 @@ import winstonDaily from 'winston-daily-rotate-file'
 import moment from 'moment'
 import 'moment-timezone'
 
-import config from '../configs'
+import config from '../../configs'
 
 const logPath = config.logs.path
 
@@ -23,7 +23,7 @@ const levelOptions = {
     http: 3,
     query: 4,
     route: 5,
-    debug: 6,
+    debug: 6
   },
   colors: {
     error: 'bold white redBG',
@@ -32,8 +32,8 @@ const levelOptions = {
     http: 'green',
     query: 'cyan',
     route: 'green',
-    debug: 'magenta',
-  },
+    debug: 'magenta'
+  }
 }
 
 const getTimestamp = () => moment().format('YYYY-MM-DD HH:mm:ss.SSS')
@@ -46,25 +46,25 @@ const transports = [
     dirname: logPath,
     datePattern: 'YYYY-MM-DD',
     maxFiles: config.logs.keep,
-    format: winston.format.printf((info) => `${getTimestamp()} [${info.level.toUpperCase()}] ${info.message}`),
+    format: winston.format.printf(info => `${getTimestamp()} [${info.level.toUpperCase()}] ${info.message}`)
   }),
   new winston.transports.Console({
     level: 'debug',
     handleExceptions: true,
     format: winston.format.combine(
       winston.format.colorize({
-        message: true,
+        message: true
       }),
-      winston.format.printf((info) => `${getTimestamp()} [${info.level.toUpperCase()}] ${info.message}`)
-    ),
-  }),
+      winston.format.printf(info => `${getTimestamp()} [${info.level.toUpperCase()}] ${info.message}`)
+    )
+  })
 ]
 winston.addColors(levelOptions.colors)
 
 const logger = winston.createLogger({
   levels: levelOptions.levels,
   transports: transports,
-  exitOnError: false,
+  exitOnError: false
 })
 
 export default {
@@ -74,5 +74,5 @@ export default {
   http: logger.http.bind(logger),
   query: (message: string) => logger.log('query', message),
   route: (message: string) => logger.log('route', message),
-  debug: logger.debug.bind(logger),
+  debug: logger.debug.bind(logger)
 }

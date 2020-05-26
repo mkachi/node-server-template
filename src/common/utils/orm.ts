@@ -1,4 +1,4 @@
-import config from '../configs'
+import config from '../../configs'
 import Sequelize, { ModelAttributes, ModelOptions, Model } from 'sequelize'
 
 const info = config.database
@@ -8,15 +8,15 @@ const orm = new Sequelize.Sequelize(info.database, info.username, info.password,
   dialect: info.type,
   define: {
     createdAt: info.timestamp.createAt,
-    updatedAt: info.timestamp.updateAt,
-  },
+    updatedAt: info.timestamp.updateAt
+  }
 })
 
 export const createDAO = (tableName: string, attributes: ModelAttributes, options?: ModelOptions): typeof Model => {
   let daoOptions = options
   if (daoOptions == null) {
     daoOptions = {
-      timestamps: false,
+      timestamps: false
     }
   }
   daoOptions.freezeTableName = true

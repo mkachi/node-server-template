@@ -1,12 +1,22 @@
-import { Router } from 'express'
+import { Request, Response } from 'express'
+import { RestRoute, Controller } from '../common/decorator'
+import { IService } from '../common/models/service'
+import { Container } from 'typedi'
+import TestService from '../services/TestService'
 
-const TestController = (router: Router) => {
-  router.get('/test', (req, res) => {
-    res.send('test')
-  })
-  router.get('/test2', (req, res) => {
-    res.send('test2')
-  })
+@Controller('/test')
+class TestController {
+  private testService: IService = Container.get(TestService)
+
+  @RestRoute('/')
+  public index(req: Request, res: Response) {
+    res.send(this.testService.execute())
+  }
+
+  @RestRoute('/value2')
+  public value2(req: Request, res: Response) {
+    res.send(this.testService.failed('error'))
+  }
 }
 
 export default TestController

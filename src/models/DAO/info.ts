@@ -1,14 +1,14 @@
 import Sequelize from 'sequelize'
-import { createDAO } from '../../utils/orm'
+import { createDAO } from '../../common/utils/orm'
 
 const Info = createDAO('info', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true,
+    primaryKey: true
   },
   value: {
-    type: Sequelize.STRING(10),
-  },
+    type: Sequelize.STRING(10)
+  }
 })
 
 export default Info

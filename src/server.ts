@@ -1,7 +1,7 @@
 import config from './configs'
-import logger from './utils/logger'
+import logger from './common/utils/logger'
 import express from 'express'
-import loader from './loaders'
+import loader from './common/loaders'
 
 const server = express()
 
@@ -20,11 +20,11 @@ loader(server)
       res.json({
         type: 'error',
         header: `${code}`,
-        value: err.message,
+        value: err.message
       })
     })
 
-    server.listen(config.server.port, (err) => {
+    server.listen(config.server.port, err => {
       if (err) {
         logger.error(err)
         process.exit(1)
@@ -33,4 +33,4 @@ loader(server)
       logger.info(`✔️  Server start on ${config.server.port}`)
     })
   })
-  .catch((except) => logger.error('❌  Server start failed - ', except))
+  .catch(except => logger.error('❌  Server start failed - ', except))

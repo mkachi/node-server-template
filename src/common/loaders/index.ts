@@ -15,7 +15,7 @@ export default async (server: express.Express) => {
     const morganStream = {
       write: (text: string) => {
         logger.route(text.replace('\n', ''))
-      },
+      }
     }
 
     server.use(morgan('combined', { stream: morganStream }))
