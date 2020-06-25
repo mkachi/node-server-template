@@ -5,7 +5,7 @@ import { IService } from '../common/models/service'
 class TestService implements IService {
   private value: number = 0
 
-  execute(): string {
+  execute(svo: any = undefined): string {
     try {
       this.value += 1
       if (this.value % 2 === 0) {

@@ -10,7 +10,7 @@ class TestController {
 
   @RestRoute('/')
   public index(req: Request, res: Response) {
-    res.send(this.testService.execute())
+    res.send(this.testService.execute(undefined))
   }
 
   @RestRoute('/value2', RestType.PUT)

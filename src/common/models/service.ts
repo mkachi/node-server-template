@@ -1,4 +1,4 @@
 export interface IService {
-  execute(): string
+  execute(svo: any): string
   failed(message: string): string
 }
